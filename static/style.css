@@ -374,3 +374,86 @@ footer p:last-child {
         font-size: 0.8rem;
     }
 }
+
+.emergency-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.emergency-button {
+    display: inline-block;
+    background: linear-gradient(45deg, #ff0000, #b30000);
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 15px 30px;
+    border-radius: 10px;
+    text-decoration: none;
+    box-shadow: 0 8px 15px rgba(255, 0, 0, 0.4);
+    position: relative;
+    transition: transform 0.2s, box-shadow 0.3s;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.emergency-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 20px rgba(255, 0, 0, 0.6);
+}
+
+.emergency-button:active {
+    transform: translateY(2px);
+    box-shadow: 0 4px 10px rgba(255, 0, 0, 0.4);
+}
+
+.emergency-button::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    width: 200%;
+    height: 200%;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    z-index: 1;
+    transition: transform 0.5s ease;
+}
+
+.emergency-button:hover::before {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.button-text {
+    position: relative;
+    z-index: 2;
+}
+
+/* Estilo do contador */
+.countdown {
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #ff5722;
+    background: #1e1e1e;
+    padding: 10px 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.countdown span {
+    font-size: 1.5rem;
+    color: #fff;
+    margin: 0 5px;
+}
+
+.countdown p {
+    font-size: 0.9rem;
+    margin-top: 10px;
+    color: #ccc;
+}
