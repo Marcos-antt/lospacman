@@ -172,7 +172,9 @@ def fighter_metrics(fighter):
         odds=odds
     )
 
-
+if __name__ == "__main__":
+    init_db()
+    app.run(debug=True)
 
 def init_db():
     conn = sqlite3.connect('banco.sqlite')
@@ -180,7 +182,3 @@ def init_db():
     cursor.execute("PRAGMA journal_mode=WAL;")
     conn.commit()
     conn.close()
-    
-if __name__ == "__main__":
-    init_db()
-    app.run(debug=True)
