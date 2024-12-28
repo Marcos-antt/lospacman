@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LosPacmans - Apostas</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</head>
+<body>
+    <div class="container">
+        <img src="{{ url_for('static', filename='logo.png') }}" alt="LosPacmans Logo" class="logo">
+        <h1 class="animated-title">Torneio LosPacmans</h1>
+        <p>Escolha seu lutador e faça sua aposta!</p>
+        <form id="betForm">
+            <label for="name">Seu Nome:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Seu E-mail:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="fighter">Escolha o Lutador:</label>
+            <select id="fighter" name="fighter" required>
+                <option value="Marcos">Marcos</option>
+                <option value="Tristan">Tristan</option>
+            </select>
+            <div id="value-buttons-container">
+                <label for="amount">Valor da Aposta:</label>
+                <div id="value-buttons">
+                    <button type="button" class="value-btn" data-value="10">R$ 10,00</button>
+                    <button type="button" class="value-btn" data-value="15">R$ 15,00</button>
+                    <button type="button" class="value-btn" data-value="20">R$ 20,00</button>
+                    <button type="button" class="value-btn" data-value="50">R$ 50,00</button>
+                    <button type="button" class="value-btn" data-value="100">R$ 100,00</button>
+                </div>
+            </div>
+            <input type="number" id="amount" name="amount" required>
+            <button type="submit" id="submitBet">Apostar</button>
+            <div id="popup-message" class="popup hidden"></div>
+        </form>
+        <hr>
+        <div id="value-buttons-container">
+            <h2>Métricas de Apostas</h2>
+            <div id="value-buttonss">
+                <a href="/Marcos"><button>Ver Métricas - Marcos</button></a>
+                <a href="/Tristan"><button>Ver Métricas - Tristan</button></a>
+            </div>
+        </div>
+        <h2>Acessar Dashboard</h2>
+        <form id="dashboardForm">
+            <label for="dashboardPassword">Senha:</label>
+            <input type="password" id="dashboardPassword" name="dashboardPassword" required>
+            <button class="main-action" type="button" id="accessDashboard">Acessar</button>
+        </form>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

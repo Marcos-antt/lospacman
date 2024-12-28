@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - LosPacmans</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Dashboard - LosPacmans</h1>
+        <h2>Métricas de Apostas</h2>
+        <a href="/Marcos"><button>Ver Métricas - Marcos</button></a>
+        <a href="/Tristan"><button>Ver Métricas - Tristan</button></a>
+        <h2>Apostas Detalhadas</h2>
+        <h2>Apostas Detalhadas</h2>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>E-mail</th>
+                        <th>Lutador</th>
+                        <th>Valor Apostado</th>
+                        <th>Número do Pedido</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in results %}
+                    <tr>
+                        <td>{{ row[0] }}</td>
+                        <td>{{ row[1] }}</td>
+                        <td>{{ row[2] }}</td>
+                        <td>R$ {{ "%.2f"|format(row[3]) }}</td>
+                        <td>{{ row[4] }}</td>
+                        <td>
+                            <button class="deleteButton" data-order="{{ row[4] }}">Apagar</button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <h2>Total de Apostas por Lutador</h2>
+        <table class="total-table">
+            <thead>
+                <tr>
+                    <th>Lutador</th>
+                    <th>Valor Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in total_by_fighter %}
+                <tr>
+                    <td>{{ row[0] }}</td>
+                    <td>R$ {{ "%.2f"|format(row[1]) }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <h2>Odds por Lutador</h2>
+        <table class="odds-table">
+            <thead>
+                <tr>
+                    <th>Lutador</th>
+                    <th>Valor Total Apostado</th>
+                    <th>Odds (Retorno)</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in odds %}
+                <tr>
+                    <td>{{ row[0] }}</td>
+                    <td>R$ {{ "%.2f"|format(row[1]) }}</td>
+                    <td>{{ "%.2f"|format(row[2]) }}x</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="/">
+            <button style="margin-top: 20px; background-color: #ff5722;">Voltar para o Painel</button>
+        </a>
+    </div>
+
+    <script>
+        document.querySelectorAll(".deleteButton").forEach(button => {
+            button.addEventListener("click", async function () {
+                const orderNumber = this.getAttribute("data-order");
+                const confirmation = confirm(`Tem certeza de que deseja apagar a aposta com o número: ${orderNumber}?`);
+                if (!confirmation) return;
+
+                try {
+                    const response = await fetch("/delete_bet", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({ order_number: orderNumber }),
+                    });
+
+                    const result = await response.json();
+                    if (response.ok) {
+                        alert(result.message);
+                        window.location.reload();
+                    } else {
+                        alert(result.message);
+                    }
+                } catch (error) {
+                    console.error("Erro ao apagar a aposta:", error);
+                    alert("Erro ao apagar a aposta.");
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
