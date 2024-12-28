@@ -84,7 +84,7 @@ function countdownToNewYear() {
 
     emergencyButton.disabled = true;
     emergencyButton.style.cursor = "not-allowed";
-    emergencyButton.textContent = "Aguardando...";
+    emergencyButton.textContent = "Chave de Emergência...";
 
     const interval = setInterval(() => {
         const currentTime = new Date().getTime();
