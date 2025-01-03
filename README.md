@@ -15,3 +15,33 @@ Banco de dados: SQLite
 Outros recursos: Envio de e-mails com SMTP, deploy na Railway
 Deploy
 A aplicação está online e disponível em: LosPacmans - Railway
+
+
+Como executar localmente
+Clone o repositório:
+
+bash
+Copiar código
+git clone https://github.com/seu-usuario/lospacmans.git
+cd lospacmans
+Crie um ambiente virtual e instale as dependências:
+
+bash
+Copiar código
+python -m venv venv
+source venv/bin/activate  # No Windows: venv\Scripts\activate
+pip install -r requirements.txt
+Inicie o banco de dados:
+
+bash
+Copiar código
+python app.py
+Execute o servidor:
+
+bash
+Copiar código
+flask run
+Acesse a aplicação localmente em http://localhost:5000.
+
+Contribuições
+Contribuições são bem-vindas! Fique à vontade para abrir issues ou enviar pull requests.
