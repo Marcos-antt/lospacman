@@ -7,7 +7,7 @@ import uuid
 
 app = Flask(__name__, static_folder="static", template_folder="templates")
 
-PASSWORD = "85121624"
+PASSWORD = "851216"
  
 def send_email(to_email, order_number, name, fighter, amount):
     sender_email = "gurpsbrasil41@gmail.com"  
